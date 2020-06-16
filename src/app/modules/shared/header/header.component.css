@@ -1,0 +1,34 @@
+.header-container{
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.header-navigation-container ul{
+  float: right;
+}
+
+.header-navigation-container ul:after{
+  clear: both;
+}
+
+.header-navigation-container ul li{
+  float: left;
+  padding: 0px 20px;
+  list-style: none;
+}
+
+.header-navigation-container ul li a{
+  text-decoration: none;
+  color: #4646ad;
+  font-weight: bold;
+}
+
+.header-navigation-container ul li a:hover{
+  text-decoration: none;
+  color: #ff7c1f;
+}
+
+
+.header-title-container a{
+  text-decoration: none;
+}

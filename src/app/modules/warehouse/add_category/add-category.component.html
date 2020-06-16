@@ -1,0 +1,20 @@
+<section class="add-category-title">
+  <div>Add Category</div>
+</section>
+<div class="add-category-content">
+
+  <div class="add-category-line">
+    <p class="add-category-header">Name</p>
+    <input  class="add-category-input"  type="text" placeholder="Name"  [(ngModel)]="name" required>
+  </div>
+
+  <div class="add-category-line">
+    <p class="add-category-header">Description</p>
+    <textarea  class="add-category-input"  type="text" placeholder="Description"  [(ngModel)]="description" rows="5" required></textarea>
+  </div>
+<div>
+    <button class="btn btn-success add-category-line"(click)="addCategory()">Add Category</button>
+  </div>
+
+
+</div>

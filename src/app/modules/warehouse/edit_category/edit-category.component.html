@@ -1,0 +1,20 @@
+<section class="edit-category-title">
+  <div>Edit Category</div>
+</section>
+<div class="edit-category-content">
+
+  <div class="edit-category-line">
+    <p class="edit-category-header">Name</p>
+    <input  class="edit-category-input"  type="text" placeholder="Name"  value="{{name}}" [(ngModel)]="name" required>
+  </div>
+
+  <div class="edit-category-line">
+    <p class="edit-category-header">Description</p>
+    <textarea  class="edit-category-input"  type="text" placeholder="Description"  value="{{description}}" [(ngModel)]="description" rows="5" required></textarea>
+  </div>
+  <div>
+    <button class="btn btn-success edit-category-line"(click)="editCategory()">Edit Category</button>
+  </div>
+
+
+</div>

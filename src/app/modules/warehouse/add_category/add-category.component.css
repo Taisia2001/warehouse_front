@@ -1,0 +1,26 @@
+.add-category-content{
+  margin: 5px 10%;
+  text-align: center;
+}
+.add-category-line{
+  width: 100%;
+  margin: 15px;
+}
+.add-category-input{
+  width: 100%;
+  border: 2px solid #636363;
+  border-radius: 10px;
+}
+.add-category-title{
+  text-align: center;
+  color: #4646ad;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: xx-large;
+}
+.add-category-header{
+  color: #4d5654;
+  font-weight: 600;
+  font-style: italic;
+  font-size: x-large;
+}

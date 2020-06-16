@@ -1,0 +1,37 @@
+<section class="edit-product-title">
+  <div>Edit Product {{name}}</div>
+</section>
+<div class="edit-product-content">
+
+  <div class="edit-product-line">
+    <p class="edit-product-header">Name</p>
+    <input  class="edit-product-input"  type="text" placeholder="Name"   value="{{name}}" [(ngModel)]="name" required>
+  </div>
+  <div class="edit-product-line">
+    <p class="edit-product-header">Producer</p>
+    <input  class="edit-product-input"  type="text" placeholder="Producer"  value="{{producer}}" [(ngModel)]="producer" required>
+  </div>
+  <div class="edit-product-line">
+    <p class="edit-product-header">Description</p>
+    <textarea  class="edit-product-input"  type="text" placeholder="Description"  value="{{description}}"  [(ngModel)]="description" rows="5" required></textarea>
+  </div>
+  <div class="edit-product-line">
+    <p class="edit-product-header">Price</p>
+    <input class="edit-product-input"  min="0" type="number" placeholder="Price"  value="{{price}}"  [(ngModel)]="price" required>
+  </div>
+  <div class="edit-product-line ">
+    <p class="edit-product-header">Amount</p>
+    <input  class="edit-product-input  product-readonly" type="number" placeholder="Amount"   value="{{amount}}"[(ngModel)]="amount" readonly>
+ </div>
+  <div class="edit-product-line">
+    <p class="edit-product-header">Category</p>
+    <input  class="edit-product-input  product-readonly"  type="text" placeholder="Category"  value="{{category}}" [(ngModel)]="category" readonly>
+  </div>
+
+
+  <div>
+    <button class="btn btn-success edit-product-line"(click)="editProduct()">Edit Product</button>
+  </div>
+
+
+</div>

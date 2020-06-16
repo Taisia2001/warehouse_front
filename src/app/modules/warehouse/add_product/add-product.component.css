@@ -1,0 +1,26 @@
+.add-product-content{
+  margin: 5px 10%;
+  text-align: center;
+}
+.add-product-line{
+  width: 100%;
+  margin: 15px;
+}
+.add-product-input{
+  width: 100%;
+  border: 2px solid #636363;
+  border-radius: 10px;
+}
+.add-product-title{
+  text-align: center;
+  color: #4646ad;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: xx-large;
+}
+.add-product-header{
+  color: #4d5654;
+  font-weight: 600;
+  font-style: italic;
+  font-size: x-large;
+}

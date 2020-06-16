@@ -1,0 +1,38 @@
+<section class="search-category-form-container">
+  <div class="search-category-form">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Category">
+        <button type="button" class="btn btn-success category-btn search-category-btn">Search</button>
+        <button type="button" class="btn btn-danger category-btn reset-search-category-btn">Reset</button>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="category-list-title">
+  <div>Categories</div>
+</section>
+<section class="category-list-container row">
+  <ng-container *ngFor="let category of categoryService.categories">
+    <div class="category-item-container text-center col-md-3">
+      <div class="category-item-content">
+        <div class="category-item-details">
+          <div class="category-item-title">
+            <p>{{ category.name }}</p>
+          </div>
+          <div class="category-item-description">
+            <p>{{ category.description }}</p>
+          </div>
+        </div>
+        <div class="category-item-buttons">
+
+          <button type="button" class="btn btn-success category-btn">Edit</button>
+          <button type="button" class="btn btn-danger category-btn delete-category-btn">Delete</button>
+          <br>
+          <button type="button" class="btn btn-dark category-btn">Products</button>
+
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

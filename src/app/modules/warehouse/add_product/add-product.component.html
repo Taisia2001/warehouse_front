@@ -1,0 +1,40 @@
+<section class="add-product-title">
+  <div>Add Product</div>
+</section>
+<div class="add-product-content">
+
+  <div class="add-product-line">
+  <p class="add-product-header">Name</p>
+  <input  class="add-product-input"  type="text" placeholder="Name"  [(ngModel)]="name" required>
+  </div>
+  <div class="add-product-line">
+    <p class="add-product-header">Producer</p>
+    <input  class="add-product-input"  type="text" placeholder="Producer"  [(ngModel)]="producer" required>
+  </div>
+  <div class="add-product-line">
+    <p class="add-product-header">Description</p>
+    <textarea  class="add-product-input"  type="text" placeholder="Description"  [(ngModel)]="description" rows="5" required></textarea>
+  </div>
+  <div class="add-product-line">
+    <p class="add-product-header">Price</p>
+    <input class="add-product-input"  min="0" type="number" placeholder="Price"  [(ngModel)]="price" required>
+  </div>
+  <div class="add-product-line">
+    <p class="add-product-header">Amount</p>
+    <input  class="add-product-input" type="number"  min="0" placeholder="Amount"  pattern="^[0-9]+" [(ngModel)]="amount" required>
+
+  </div>
+  <div class="add-product-line">
+    <p class="add-product-header">Category <select ng-model="selectedItem">
+      <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+    </select></p>
+
+  </div>
+
+
+<div>
+  <button class="btn btn-success add-product-line"(click)="addProduct()">Add Product</button>
+</div>
+
+
+</div>

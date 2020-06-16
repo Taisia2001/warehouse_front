@@ -1,0 +1,66 @@
+<section class="search-product-form-container">
+  <div class="search-product-form">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Product">
+        <button type="button" class="btn btn-success product-btn search-product-btn">Search</button>
+        <button type="button" class="btn btn-danger product-btn reset-search-product-btn">Reset</button>
+      </div>
+    </form>
+  </div>
+</section>
+<section style="text-align: center">
+  <div>Category name/all products</div>
+  <div>Total cost will be here</div>
+</section>
+<section class="product-list-container row">
+  <ng-container *ngFor="let product of productService.products">
+    <div class="product-item-container text-center col-md-3">
+      <div class="product-item-content">
+        <div class="product-item-details">
+          <div class="product-item-title">
+            <p>{{ product.name }}</p>
+          </div>
+
+          <div class="product-item-producer">
+            <p>{{ product.producer }}</p>
+          </div>
+
+          <div class="product-item-description">
+            <p>{{ product.description }}</p>
+          </div>
+
+          <div class="product-item-category">
+            <p>Category: {{ product.category}}</p>
+          </div>
+
+          <div class="product-item-amount">
+            <p>Amount: {{ product.amount }}</p>
+          </div>
+
+          <div class="product-item-price">
+            <h5>{{ product.price | currency:'USD':true }}</h5>
+          </div>
+        </div>
+        <!--<div class="shop-item-cart">
+          <form role="form" >(submit)="addToCart($event, product, quantity.value)">
+            <div class="row">
+              <div class="col-md-4">
+                <input type="number" min="1" value="1" class="form-control" #quantity>
+              </div>
+              <div class="col-md-6">
+                <button type="submit" class="btn"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+              </div>
+            </div>
+          </form>
+        </div>-->
+        <div class="product-item-buttons">
+          <button type="button" class="btn btn-secondary product-btn">Change Amount</button>
+          <br>
+          <button type="button" class="btn btn-success product-btn">Edit</button>
+          <button type="button" class="btn btn-danger product-btn delete-product-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>
