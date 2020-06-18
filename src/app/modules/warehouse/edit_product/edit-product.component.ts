@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../../models/product';
 import {ProductService} from '../../../services/product.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-product',
@@ -8,33 +9,26 @@ import {ProductService} from '../../../services/product.service';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  name = 'hereWillBe name';
-  description = 'here will be d';
-  producer = 'here will be p';
-  amount;
-  price ;
-  category = 'here will be c';
-  constructor(private productService: ProductService) { }
+  product: Product;
+  nName;
+  nProducer;
+  nDescription;
+  nPrice;
+
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.product = this.productService.getProduct(params.get('id'));
+      this.nName = this.product.name;
+      this.nDescription = this.product.description;
+      this.nProducer = this.product.producer;
+      this.nPrice = this.product.price;
+    });
   }
   editProduct() {
-    const product: Product = {
-      name: this.name,
-      description: this.description,
-      producer: this.producer,
-      amount: this.amount,
-      price: this.price,
-      category: this.category
-
-    };
-    this.productService.editProduct(product);
-    this.name = '';
-    this.description = '';
-    this.producer = '';
-    this.amount = '';
-    this.price = '';
-    this.category = '';
+    this.productService.editProduct(this.product, this.nName, this.nDescription, this.nProducer, this.nPrice);
+    // TODO show mesage product was edited or you have already had product with name ...
   }
 
 }

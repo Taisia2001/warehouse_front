@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-import * as Http from 'http';
-
-// import { User } from './../models/user';
-
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
+  username = "";
+  constructor() {
+    this.authorized = false;
+  }
 
-  constructor() { }
-
+  authorized;
   login(username: string, password: string) {
 
   /*  return this.http.post(appConfig.apiUrl + 'login', JSON.stringify({username, password}), {headers: this.headers})
@@ -39,6 +36,8 @@ export class AuthService {
     localStorage.removeItem('data');
     localStorage.removeItem('cart');
     localStorage.removeItem('shipDetail');
+    this.authorized=false;
+    this.username='';
   }
 
   isAuthenticated() {

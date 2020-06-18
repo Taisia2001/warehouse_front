@@ -27,3 +27,7 @@
 .product-readonly{
   background-color: #a9a9a9;
 }
+textarea:focus, input:focus{
+  outline: none;
+  border: 2px solid #000000;
+}

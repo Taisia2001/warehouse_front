@@ -10,11 +10,11 @@
   </div>
 </section>
 <section style="text-align: center">
-  <div>Category name/all products</div>
-  <div>Total cost will be here</div>
+  <div class="product-list-title">{{title}}</div>
+  <div class="total">Total cost: {{total}}</div>
 </section>
 <section class="product-list-container row">
-  <ng-container *ngFor="let product of productService.products">
+  <ng-container *ngFor="let product of products" >
     <div class="product-item-container text-center col-md-3">
       <div class="product-item-content">
         <div class="product-item-details">
@@ -55,12 +55,39 @@
           </form>
         </div>-->
         <div class="product-item-buttons">
-          <button type="button" class="btn btn-secondary product-btn">Change Amount</button>
+          <!--data-art="item._id"-->
+          <button type="button" class="btn btn-secondary product-btn" data-toggle="modal" data-target="#productModal" (click)="prodModal(product)">Change Amount</button>
           <br>
-          <button type="button" class="btn btn-success product-btn">Edit</button>
-          <button type="button" class="btn btn-danger product-btn delete-product-btn">Delete</button>
+          <button type="button" class="btn btn-success product-btn" [routerLink]="['/editProduct', product.id]" >Edit</button>
+          <button type="button" class="btn btn-danger product-btn delete-product-btn" (click)="removeProduct(product.id)">Delete</button>
         </div>
       </div>
     </div>
   </ng-container>
 </section>
+
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm text-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="product-item-title"> {{changedProduct.name}}</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <div>
+          <input  class="change-amount-input" type="number" name="amount" #amount="ngModel"  [min]="-1*changedProduct.amount" placeholder="Change Amount" pattern="-?\d+" [(ngModel)]="change" >
+          <div [hidden]="amount.valid || amount.untouched" class="alert alert-danger">
+            Here can be only integer value!
+          </div>
+          <div>
+            <button [disabled]="(!amount.valid) || -1*amount.value>changedProduct.amount" type="button" class="btn btn-dark product-btn" (click)="changeAmount()" >Change Amount</button>
+          </div>
+          <p class="product-modal-amount-title">Amount: {{changedProduct.amount}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

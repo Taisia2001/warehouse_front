@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   // loginForm: FormGroup;
 
-  constructor(
+  constructor(public authService: AuthService
    /* public router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -32,7 +33,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(data) {
+  login() {
+    this.authService.authorized = true;
+    this.authService.username = "jack";
 
    /* if( appConfig.username == data.username && appConfig.password == data.password ){
 

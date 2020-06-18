@@ -13,7 +13,7 @@
   <div>Categories</div>
 </section>
 <section class="category-list-container row">
-  <ng-container *ngFor="let category of categoryService.categories">
+  <ng-container *ngFor="let category of categories">
     <div class="category-item-container text-center col-md-3">
       <div class="category-item-content">
         <div class="category-item-details">
@@ -26,10 +26,10 @@
         </div>
         <div class="category-item-buttons">
 
-          <button type="button" class="btn btn-success category-btn">Edit</button>
-          <button type="button" class="btn btn-danger category-btn delete-category-btn">Delete</button>
+          <button  [routerLink]="['/editCategory', category.id]" type="button" class="btn btn-success category-btn">Edit</button>
+          <button type="button" class="btn btn-danger category-btn delete-category-btn" (click)="removeCategory(category.id)">Delete</button>
           <br>
-          <button type="button" class="btn btn-dark category-btn">Products</button>
+          <button type="button" class="btn btn-dark category-btn" [routerLink]="['/category', category.id]" >Products</button>
 
         </div>
       </div>

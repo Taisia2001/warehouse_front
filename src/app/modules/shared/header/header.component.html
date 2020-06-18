@@ -5,12 +5,12 @@
     </div>
     <div class="col-md-12 header-navigation-container">
       <ul>
-        <li><a >ALL PRODUCTS</a></li>
-        <li><a>CATEGORIES</a></li>
-        <li><a>ADD PRODUCT</a></li>
-        <li><a>ADD CATEGORY</a></li>
-        <li><p>USERNAME</p></li>
-        <li><a>LOGOUT</a></li>
+        <li><a routerLink="/products" routerLinkActive="active">ALL PRODUCTS</a></li>
+        <li><a routerLink="/categories" routerLinkActive="active">CATEGORIES</a></li>
+        <li><a routerLink="/addProduct" routerLinkActive="active">ADD PRODUCT</a></li>
+        <li><a routerLink="/addCategory" routerLinkActive="active">ADD CATEGORY</a></li>
+        <li><span [textContent]="authService.username"></span></li>
+        <li><a routerLink="/login" (click)="logout()" [hidden]="!authService.authorized">LOGOUT</a></li>
         <!--<li><a (click)="logout()">LOGOUT</a></li>-->
       </ul>
     </div>

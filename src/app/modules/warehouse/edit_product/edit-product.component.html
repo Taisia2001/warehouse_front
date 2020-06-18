@@ -1,36 +1,37 @@
 <section class="edit-product-title">
-  <div>Edit Product {{name}}</div>
+  <div>Edit Product {{product.name}}</div>
 </section>
 <div class="edit-product-content">
 
   <div class="edit-product-line">
     <p class="edit-product-header">Name</p>
-    <input  class="edit-product-input"  type="text" placeholder="Name"   value="{{name}}" [(ngModel)]="name" required>
+    <input  class="edit-product-input"  type="text" placeholder="Name"   value="{{nName}}" [(ngModel)]="nName" #name="ngModel"  required>
   </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Producer</p>
-    <input  class="edit-product-input"  type="text" placeholder="Producer"  value="{{producer}}" [(ngModel)]="producer" required>
+    <input  class="edit-product-input"  type="text" placeholder="Producer"  value="{{nProducer}}" [(ngModel)]="nProducer" #producer="ngModel"  required>
   </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Description</p>
-    <textarea  class="edit-product-input"  type="text" placeholder="Description"  value="{{description}}"  [(ngModel)]="description" rows="5" required></textarea>
+    <textarea  class="edit-product-input"  type="text" placeholder="Description"  value="{{nDescription}}"  [(ngModel)]="nDescription" rows="5" #description="ngModel"  required></textarea>
   </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Price</p>
-    <input class="edit-product-input"  min="0" type="number" placeholder="Price"  value="{{price}}"  [(ngModel)]="price" required>
+    <input class="edit-product-input"  min="0" type="number" placeholder="Price"  value="{{nPrice}}"  [(ngModel)]="nPrice"  pattern="\d+(\.\d{1,2})?" #price="ngModel" required>
   </div>
   <div class="edit-product-line ">
     <p class="edit-product-header">Amount</p>
-    <input  class="edit-product-input  product-readonly" type="number" placeholder="Amount"   value="{{amount}}"[(ngModel)]="amount" readonly>
+    <input  class="edit-product-input  product-readonly" type="number" placeholder="Amount"   value="{{product.amount}}"[(ngModel)]="product.amount" readonly>
  </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Category</p>
-    <input  class="edit-product-input  product-readonly"  type="text" placeholder="Category"  value="{{category}}" [(ngModel)]="category" readonly>
+    <input  class="edit-product-input  product-readonly"  type="text" placeholder="Category"  value="{{product.category}}" [(ngModel)]="product.category" readonly>
   </div>
 
 
   <div>
-    <button class="btn btn-success edit-product-line"(click)="editProduct()">Edit Product</button>
+    <button [disabled]="!name.valid|| !description.valid || !price.valid || !producer.valid"
+      class="btn btn-success edit-product-line"(click)="editProduct()">Edit Product</button>
   </div>
 
 

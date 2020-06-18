@@ -6,15 +6,15 @@ import {tap} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
-  public products: Product[] = [// [];
+  public products: Product[] = [
   {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
     {id: 2, name: 'milk', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
     {id: 3, name: 'apple', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
-    {id: 4, name: 'grass', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
-    {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
-    {id: 2, name: 'milk', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
-    {id: 3, name: 'apple', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
-    {id: 4, name: 'grass', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'}
+    {id: 4, name: 'grass', description: 'd', price: 5, producer: 'me', amount: 2, category: 'weapon'},
+    {id: 5, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'laptops'},
+    {id: 6, name: 'milk', description: 'd', price: 5, producer: 'me', amount: 2, category: 'slaves'},
+    {id: 7, name: 'apple', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
+    {id: 8, name: 'grass', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'}
 
   ];
   constructor(private http: HttpClient) {}
@@ -30,7 +30,17 @@ export class ProductService {
   addProduct(todo: Product) {
     this.products.push(todo);
   }
-  editProduct(todo: Product) {
-    this.products.push(todo);
+  editProduct(todo: Product, name, description, producer, price) {
+    todo.name=name;
+    todo.description=description;
+    todo.producer=producer;
+    todo.price=price;
+
+  }
+  getProduct(productId) {
+    return this.products[productId - 1];
+  }
+  getProductsByCategory(categoryId) {
+    return this.products.filter(t =>  t.category === categoryId);
   }
 }

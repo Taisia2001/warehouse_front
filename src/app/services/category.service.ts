@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Category} from '../models/category';
+import {Product} from '../models/product';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
@@ -11,10 +12,10 @@ export class CategoryService {
     {id: 2, name: 'weapon', description: 'd'},
     {id: 3, name: 'laptops', description: 'd'},
     {id: 4, name: 'people', description: 'd'},
-    {id: 1, name: 'slave', description: 'd'},
-    {id: 2, name: 'wine', description: 'd'},
-    {id: 3, name: 'toy', description: 'd'},
-    {id: 4, name: 'phones', description: 'd'}
+    {id: 5, name: 'slave', description: 'd'},
+    {id: 6, name: 'wine', description: 'd'},
+    {id: 7, name: 'toy', description: 'd'},
+    {id: 8, name: 'phones', description: 'd'}
 
   ];
   constructor(private http: HttpClient) {}
@@ -24,8 +25,15 @@ export class CategoryService {
   }*/
 
 
-  removeProduct(id: number) {
+  removeCategory(id: number) {
     this.categories = this.categories.filter(t => t.id !== id);
+  }
+  getCategory(categoryId){
+    return this.categories[categoryId - 1];
+  }
+  editCategory(todo: Category, name, description) {
+    todo.name = name;
+    todo.description = description;
   }
 
 }

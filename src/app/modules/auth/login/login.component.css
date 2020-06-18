@@ -33,3 +33,7 @@
 .login-submit-container button{
   padding: 10px 50px;
 }
+textarea:focus, input:focus{
+  outline: none;
+  border: 2px solid #000000;
+}

@@ -8,10 +8,16 @@ import {CategoryService} from '../../../services/category.service';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-
-  constructor(public categoryService: CategoryService) { }
+categories;
+  constructor(public categoryService: CategoryService) {
+    this.categories = categoryService.categories;
+  }
 
   ngOnInit(): void {
+  }
+  removeCategory(categoryId){
+    this.categoryService.removeCategory(categoryId);
+    this.categories = this.categoryService.categories;
   }
 
 }
