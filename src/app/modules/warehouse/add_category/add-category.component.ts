@@ -9,8 +9,8 @@ import {CategoryService} from '../../../services/category.service';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
-  name = '';
-  description = '';
+  nName = '';
+  nDescription = '';
 
 
   constructor(private categoryService: CategoryService) { }
@@ -18,14 +18,9 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
   addCategory() {
-    const category: Category = {
-      name: this.name,
-      description: this.description
-
-    };
-  //  this.categoryService.addC
-    this.name = '';
-    this.description = '';
+    this.categoryService.addCategory(this.nName, this.nDescription);
+    this.nName = '';
+    this.nDescription = '';
   }
 
 }

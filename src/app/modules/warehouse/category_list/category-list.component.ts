@@ -9,6 +9,7 @@ import {CategoryService} from '../../../services/category.service';
 })
 export class CategoryListComponent implements OnInit {
 categories;
+search = '';
   constructor(public categoryService: CategoryService) {
     this.categories = categoryService.categories;
   }
@@ -18,6 +19,12 @@ categories;
   removeCategory(categoryId){
     this.categoryService.removeCategory(categoryId);
     this.categories = this.categoryService.categories;
+  }
+  newSearch(str){
+this.search = str;
+  }
+  reset() {
+    this.search = '';
   }
 
 }

@@ -2,9 +2,9 @@
   <div class="search-product-form">
     <form>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Product">
-        <button type="button" class="btn btn-success product-btn search-product-btn">Search</button>
-        <button type="button" class="btn btn-danger product-btn reset-search-product-btn">Reset</button>
+        <input type="text" class="form-control" placeholder="Search Product" #se>
+        <button type="button" class="btn btn-success product-btn search-product-btn" (click)="newSearch(se.value)">Search</button>
+        <button type="button" class="btn btn-danger product-btn reset-search-product-btn" (click)="reset()">Reset</button>
       </div>
     </form>
   </div>
@@ -14,7 +14,7 @@
   <div class="total">Total cost: {{total}}</div>
 </section>
 <section class="product-list-container row">
-  <ng-container *ngFor="let product of products" >
+  <ng-container *ngFor="let product of products | filter:search" >
     <div class="product-item-container text-center col-md-3">
       <div class="product-item-content">
         <div class="product-item-details">

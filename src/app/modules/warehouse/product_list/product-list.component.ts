@@ -16,6 +16,7 @@ category;
 title;
 products;
 total = 0;
+search = '';
   constructor(public productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
@@ -46,6 +47,12 @@ total = 0;
   removeProduct(productId){
     this.productService.removeProduct(productId);
     this.products = this.productService.products
+  }
+  newSearch(str) {
+    this.search = str;
+  }
+  reset(){
+    this.search = '';
   }
 
 }

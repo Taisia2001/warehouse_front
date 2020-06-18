@@ -28,7 +28,7 @@ export class EditProductComponent implements OnInit {
   }
   editProduct() {
     this.productService.editProduct(this.product, this.nName, this.nDescription, this.nProducer, this.nPrice);
-    // TODO show mesage product was edited or you have already had product with name ...
+    // TODO show message product was edited or you have already had product with name ...
   }
 
 }

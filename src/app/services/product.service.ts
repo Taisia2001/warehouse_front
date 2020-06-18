@@ -27,8 +27,9 @@ export class ProductService {
   removeProduct(id: number) {
     this.products = this.products.filter(t => t.id !== id);
   }
-  addProduct(todo: Product) {
-    this.products.push(todo);
+  addProduct(name, description, producer, amount, price, categoryId, categoryName) {
+    this.products.push({id: this.products.length + 1, name: name, description: description,
+    producer:producer, amount: amount, price: price, categoryId: categoryId, category: categoryName});
   }
   editProduct(todo: Product, name, description, producer, price) {
     todo.name=name;

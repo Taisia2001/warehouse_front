@@ -15,6 +15,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import {FilterPipe} from '../shared/filter.pipe';
 
 export const routes: Routes = [
   {
@@ -95,7 +96,8 @@ export const routes: Routes = [
     AddProductComponent,
     EditProductComponent,
     EditCategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    FilterPipe
   ],
   imports: [
     RouterModule.forRoot(routes),

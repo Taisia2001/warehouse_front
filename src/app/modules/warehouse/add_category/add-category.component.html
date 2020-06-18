@@ -5,15 +5,15 @@
 
   <div class="add-category-line">
     <p class="add-category-header">Name</p>
-    <input  class="add-category-input"  type="text" placeholder="Name"  [(ngModel)]="name" required>
+    <input class="add-category-input" type="text" placeholder="Name" [(ngModel)]="nName"  #name="ngModel" required>
   </div>
 
   <div class="add-category-line">
     <p class="add-category-header">Description</p>
-    <textarea  class="add-category-input"  type="text" placeholder="Description"  [(ngModel)]="description" rows="5" required></textarea>
+    <textarea class="add-category-input" type="text" placeholder="Description" [(ngModel)]="nDescription" rows="5"  #description="ngModel" required></textarea>
   </div>
 <div>
-    <button class="btn btn-success add-category-line"(click)="addCategory()">Add Category</button>
+    <button [disabled]="!name.valid|| !description.valid" class="btn btn-success add-category-line"(click)="addCategory()">Add Category</button>
   </div>
 
 

@@ -28,12 +28,14 @@ export class CategoryService {
   removeCategory(id: number) {
     this.categories = this.categories.filter(t => t.id !== id);
   }
-  getCategory(categoryId){
+  getCategory(categoryId) {
     return this.categories[categoryId - 1];
   }
   editCategory(todo: Category, name, description) {
     todo.name = name;
     todo.description = description;
   }
-
+  addCategory(name, description) {
+    this.categories.push({id: this.categories.length + 1, name: name, description: description});
+ }
 }

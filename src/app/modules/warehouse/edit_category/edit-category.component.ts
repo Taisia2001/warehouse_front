@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from '../../../services/product.service';
 import {CategoryService} from '../../../services/category.service';
-import {Product} from '../../../models/product';
 import {ActivatedRoute} from '@angular/router';
 import {Category} from '../../../models/category';
 
@@ -27,7 +25,6 @@ export class EditCategoryComponent implements OnInit {
   }
   editCategory() {
     this.categoryService.editCategory(this.category, this.nName, this.nDescription);
-
-    //TODO show mesage category was edited or you have already had category with name ...
+    // TODO show message category was edited or you have already had category with name ...
   }
 }

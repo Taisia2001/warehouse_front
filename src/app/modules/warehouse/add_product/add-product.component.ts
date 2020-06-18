@@ -11,34 +11,32 @@ import {Category} from '../../../models/category';
 })
 export class AddProductComponent implements OnInit {
 
-  name = '';
-  description = '';
-  producer = '';
-  amount;
-  price ;
-  category = '';
+  nName = '';
+  nDescription = '';
+  nProducer = '';
+  nAmount;
+  nPrice ;
+  categoryId = '';
+  categoryName;
  public  categories: Category[] = this.categoryService.categories;
   constructor(private  productServise: ProductService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
   }
-  addProduct() {
-    const product: Product = {
-      name: this.name,
-      description: this.description,
-      producer: this.producer,
-      amount: this.amount,
-      price: this.price,
-      category: this.category
 
-    };
-    this.productServise.addProduct(product);
-    this.name = '';
-    this.description = '';
-    this.producer = '';
-    this.amount = '';
-    this.price = '';
-    this.category = '';
+  setId(id) {
+    this.categoryId = id;
+    this.categoryName = this.categoryService.getCategory(id).name;
+  }
+  addProduct() {
+    // TODO message add or not
+    this.productServise.addProduct(this.nName, this.nDescription, this.nProducer, this.nAmount, this.nPrice, this.categoryId, this.categoryName);
+    this.nName = '';
+    this.nDescription = '';
+    this.nProducer = '';
+    this.nAmount = '';
+    this.nPrice = '';
+    this.categoryId = '';
   }
 
 }
