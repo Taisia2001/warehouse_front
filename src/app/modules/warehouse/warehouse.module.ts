@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {AppComponent} from '../../app.component';
-import {AuthComponent} from '../auth/auth.component';
 import {LoginComponent} from '../auth/login/login.component';
 import {HeaderComponent} from '../shared/header/header.component';
-import {ValidationFieldComponent} from '../shared/validation-field/validation-field.component';
 import {WarehouseComponent} from './warehouse.component';
 import {CategoryListComponent} from './category_list/category-list.component';
 import {ProductListComponent} from './product_list/product-list.component';
@@ -92,10 +90,8 @@ export const routes: Routes = [
 ];
 @NgModule({
   declarations: [
-    AuthComponent,
     LoginComponent,
     HeaderComponent,
-    ValidationFieldComponent,
     WarehouseComponent,
     CategoryListComponent,
     ProductListComponent,
@@ -117,4 +113,6 @@ export const routes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class WarehouseModule{}
+export class WarehouseModule {
+
+}

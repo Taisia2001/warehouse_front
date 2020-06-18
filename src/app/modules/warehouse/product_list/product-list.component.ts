@@ -29,7 +29,7 @@ search = '';
       this.products = this.productService.getProductsByCategory(this.category.name);
     } else {
       this.title = 'All products';
-      this.products = this.productService.products;
+      this.products = this.productService.getProducts();
     }
     for (const p of this.products) {
       this.total +=  p.price;
@@ -46,7 +46,7 @@ search = '';
    }
   removeProduct(productId){
     this.productService.removeProduct(productId);
-    this.products = this.productService.products
+    this.products = this.productService.getProducts();
   }
   newSearch(str) {
     this.search = str;

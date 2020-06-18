@@ -11,14 +11,14 @@ export class CategoryListComponent implements OnInit {
 categories;
 search = '';
   constructor(public categoryService: CategoryService) {
-    this.categories = categoryService.categories;
+    this.categories = categoryService.getCaregories();
   }
 
   ngOnInit(): void {
   }
   removeCategory(categoryId){
     this.categoryService.removeCategory(categoryId);
-    this.categories = this.categoryService.categories;
+    this.categories = this.categoryService.getCaregories();
   }
   newSearch(str){
 this.search = str;

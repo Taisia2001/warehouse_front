@@ -4,7 +4,7 @@ import {Category} from '../models/category';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
-  public categories: Category[] = [
+  private categories: Category[] = [
     {id: 1, name: 'food', description: 'd'},
     {id: 2, name: 'weapon', description: 'd'},
     {id: 3, name: 'laptops', description: 'd'},
@@ -29,15 +29,18 @@ export class CategoryService {
     return this.categories[categoryId - 1];
   }
   editCategory(todo: Category, name, description) {
-    alert("Mistake! You have already had category with name "+ todo.name);
-    //alert("Category was edited and saved");
+    alert('Mistake! You have already had category with name ' + todo.name);
+    // alert("Category was edited and saved");
     todo.name = name;
     todo.description = description;
 
   }
   addCategory(name, description) {
-    alert("Mistake! You have already had category with name "+ name);
-    //alert("Category was succesfully created");
-    this.categories.push({id: this.categories.length + 1, name: name, description: description});
+    alert('Mistake! You have already had category with name ' + name);
+    // alert("Category was succesfully created");
+    this.categories.push({id: this.categories.length + 1, name, description});
+ }
+ getCaregories() {
+    return this.categories;
  }
 }

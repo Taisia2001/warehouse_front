@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
-  public products: Product[] = [
+  private products: Product[] = [
   {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
     {id: 2, name: 'milk', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
     {id: 3, name: 'apple', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'},
@@ -21,7 +21,9 @@ export class ProductService {
       .pipe(tap(todos => this.products = todos));
   }*/
 
-
+getProducts() {
+  return this.products;
+}
   removeProduct(id: number) {
     this.products = this.products.filter(t => t.id !== id);
   }

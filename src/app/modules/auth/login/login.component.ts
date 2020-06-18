@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(name, password) {
-    this.authService.login(name,password);
+    this.authService.login(name, password);
     this.router.navigate(['products']);
    /* if( appConfig.username == data.username && appConfig.password == data.password ){
 
