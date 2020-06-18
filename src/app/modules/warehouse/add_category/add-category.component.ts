@@ -18,6 +18,7 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
   addCategory() {
+    // TODO alert succes or exist
     this.categoryService.addCategory(this.nName, this.nDescription);
     this.nName = '';
     this.nDescription = '';

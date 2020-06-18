@@ -26,14 +26,18 @@ export class ProductService {
     this.products = this.products.filter(t => t.id !== id);
   }
   addProduct(name, description, producer, amount, price, categoryId, categoryName) {
-    this.products.push({id: this.products.length + 1, name: name, description: description,
-    producer:producer, amount: amount, price: price, categoryId: categoryId, category: categoryName});
+    alert('Mistake! You have already had category with name ' + name);
+    // alert("Product was succesfully created");
+    this.products.push({id: this.products.length + 1, name, description,
+    producer, amount, price, categoryId, category: categoryName});
   }
   editProduct(todo: Product, name, description, producer, price) {
-    todo.name=name;
-    todo.description=description;
-    todo.producer=producer;
-    todo.price=price;
+    alert('Mistake! You have already had product with name ' + name);
+    // alert("Product was succesfully edited");
+    todo.name = name;
+    todo.description = description;
+    todo.producer = producer;
+    todo.price = price;
 
   }
   getProduct(productId) {

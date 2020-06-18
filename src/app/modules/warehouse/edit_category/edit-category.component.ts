@@ -32,5 +32,6 @@ export class EditCategoryComponent implements OnInit {
   editCategory() {
     this.categoryService.editCategory(this.category, this.nName, this.nDescription);
     // TODO show message category was edited or you have already had category with name ...
+
   }
 }

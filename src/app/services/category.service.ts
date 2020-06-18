@@ -29,10 +29,15 @@ export class CategoryService {
     return this.categories[categoryId - 1];
   }
   editCategory(todo: Category, name, description) {
+    alert("Mistake! You have already had category with name "+ todo.name);
+    //alert("Category was edited and saved");
     todo.name = name;
     todo.description = description;
+
   }
   addCategory(name, description) {
+    alert("Mistake! You have already had category with name "+ name);
+    //alert("Category was succesfully created");
     this.categories.push({id: this.categories.length + 1, name: name, description: description});
  }
 }
