@@ -16,12 +16,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {FilterPipe} from '../shared/filter.pipe';
+import {AuthGuard} from '../../guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
     children: [
       { path: '', component: LoginComponent }
     ]
@@ -29,7 +29,7 @@ export const routes: Routes = [
   {
     path: 'products',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: ProductListComponent }
     ]
@@ -37,7 +37,7 @@ export const routes: Routes = [
   {
     path: 'categories',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: CategoryListComponent}
     ]
@@ -45,7 +45,7 @@ export const routes: Routes = [
   {
     path: 'category/:id',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: ProductListComponent}
     ]
@@ -53,7 +53,7 @@ export const routes: Routes = [
   {
     path: 'addCategory',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: AddCategoryComponent}
     ]
@@ -61,7 +61,7 @@ export const routes: Routes = [
   {
     path: 'addProduct',
     component: WarehouseComponent,
-   // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: '', component: AddProductComponent, }
     ]
@@ -69,7 +69,7 @@ export const routes: Routes = [
   {
     path: 'editCategory/:id',
     component: WarehouseComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: EditCategoryComponent}
     ]
@@ -77,11 +77,17 @@ export const routes: Routes = [
   {
     path: 'editProduct/:id',
     component: WarehouseComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: '', component: EditProductComponent, }
     ]
-  }
+  },
+  {path: '**',
+    component: WarehouseComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {path: '', component: ProductListComponent, }
+    ]}
 
 ];
 @NgModule({

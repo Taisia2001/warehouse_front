@@ -6,7 +6,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {WarehouseModule} from './modules/warehouse/warehouse.module';
-import {AppRoutingModule} from './app.routing';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import {AppRoutingModule} from './app.routing';
     HttpClientModule,
     FormsModule,
     RouterModule,
-    WarehouseModule,
-    AppRoutingModule
+    WarehouseModule
 
   ],
   providers: [],

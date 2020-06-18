@@ -5,14 +5,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  username = "";
+  username = localStorage.getItem('data');
   constructor() {
-    this.authorized = false;
   }
 
-  authorized;
   login(username: string, password: string) {
-
+    this.username = username;
+    localStorage.setItem('data', username);
   /*  return this.http.post(appConfig.apiUrl + 'login', JSON.stringify({username, password}), {headers: this.headers})
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
@@ -34,14 +33,11 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('data');
-    localStorage.removeItem('cart');
-    localStorage.removeItem('shipDetail');
-    this.authorized=false;
-    this.username='';
+    this.username = '';
   }
 
   isAuthenticated() {
-
+// return this.authorized;
     return ( localStorage.getItem('data') ) ? true : false;
 
   }

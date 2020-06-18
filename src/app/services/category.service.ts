@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
 import {Category} from '../models/category';
-import {Product} from '../models/product';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {

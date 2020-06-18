@@ -12,9 +12,9 @@ export class LoginComponent implements OnInit {
 
   // loginForm: FormGroup;
 
-  constructor(public authService: AuthService
-   /* public router: Router,
-    private route: ActivatedRoute,
+  constructor(public authService: AuthService,
+              public router: Router
+   /* private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
     public authService: AuthService*/
@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
-    this.authService.authorized = true;
-    this.authService.username = "jack";
-
+  login(name, password) {
+    this.authService.login(name,password);
+    this.router.navigate(['products']);
    /* if( appConfig.username == data.username && appConfig.password == data.password ){
 
       this.authService.login(data.username,data.password)

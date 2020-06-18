@@ -1,31 +1,26 @@
 <section class="login-section">
   <div class="login-container">
     <div class="login-form-container">
-
-      <!--[formGroup]="loginForm"formControlName="username"  formControlName="password"-->
-     <!-- <form method="POST" >-->
         <div class="login-form-header">
           <h3>Sign-in</h3>
         </div>
         <div class="form-group row">
           <div class="col-md-12">
-            <input  type="text" class="form-control" name="username" placeholder="Username">
+            <input  type="text" class="form-control" name="username" placeholder="Username" #name>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-12">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" #password>
           </div>
         </div>
         <div class="form-actions">
           <div class="form-group row">
             <div class="col-md-12 login-submit-container">
-              <!--(click)="login(loginForm.value)"-->
-              <button type="button" class="btn btn-primary" type="button" (click)="login()" >Login</button>
+              <button type="button" class="btn btn-primary" type="button" (click)="login(name.value, password.value)" >Login</button>
             </div>
           </div>
         </div>
-     <!-- </form-->
     </div>
   </div>
 </section>

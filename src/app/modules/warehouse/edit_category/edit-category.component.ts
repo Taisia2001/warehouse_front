@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../../services/category.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../../models/category';
 
 @Component({
@@ -10,16 +10,22 @@ import {Category} from '../../../models/category';
 })
 export class EditCategoryComponent implements OnInit {
 
-  category: Category;
+  category: Category = {id: 1, name: 'food', description: 'd'};
+  temp;
   nName;
   nDescription;
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute) { }
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.category = this.categoryService.getCategory(params.get('id'));
-      this.nName = this.category.name;
-      this.nDescription = this.category.description;
+      this.temp = this.categoryService.getCategory(params.get('id'));
+      if (this.temp) {
+        this.category = this.temp;
+        this.nName = this.category.name;
+        this.nDescription = this.category.description;
+      } else {
+        this.router.navigate(['categories']);
+      }
     });
 
   }
