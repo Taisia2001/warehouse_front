@@ -18,7 +18,7 @@ export class AddProductComponent implements OnInit {
   nPrice ;
   categoryId = '';
   categoryName;
- public  categories: Category[] = this.categoryService.categories;
+ public  categories: Category[] = this.categoryService.getCaregories();
   constructor(private  productServise: ProductService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {

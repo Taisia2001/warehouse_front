@@ -11,10 +11,10 @@
 </section>
 <section style="text-align: center">
   <div class="product-list-title">{{title}}</div>
-  <div class="total">Total cost: {{total}}</div>
+  <div class="total" >Total cost: <span [textContent]="total"></span> </div>
 </section>
 <section class="product-list-container row">
-  <ng-container *ngFor="let product of products | filter:search" >
+  <ng-container *ngFor="let product of (products |async| filter:search)" >
     <div class="product-item-container text-center col-md-3">
       <div class="product-item-content">
         <div class="product-item-details">

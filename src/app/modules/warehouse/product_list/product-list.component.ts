@@ -3,6 +3,8 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {CategoryService} from '../../../services/category.service';
 import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -10,30 +12,38 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-changedProduct: Product = {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'};
+changedProduct: Product = {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, categoryName: 'food'};
 change;
 category;
 title;
-products;
+products: Observable<any>;
 total = 0;
 search = '';
   constructor(public productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.category = this.categoryService.getCategory(params.get('id'));
     });
     if (this.category) {
       this.title = this.category.name;
       // TODO change to id later
-      this.products = this.productService.getProductsByCategory(this.category.name);
+      // this.products = this.productService.getProductsByCategory(this.category.name);
     } else {
       this.title = 'All products';
       this.products = this.productService.getProducts();
+      console.log(this.products);
     }
-    for (const p of this.products) {
-      this.total +=  p.price;
-    }
+    this.products.pipe(
+      map(items => items)
+    )
+      .subscribe(data => {
+        for (const p of data) {
+          this.total += p.price;
+        }
+        this.total = this.total.toFixed(2);
+      });
+
 
   }
   prodModal(item: Product) {
@@ -44,14 +54,14 @@ search = '';
   changeAmount() {
     this.changedProduct.amount += this.change;
    }
-  removeProduct(productId){
+  removeProduct(productId) {
     this.productService.removeProduct(productId);
-    this.products = this.productService.getProducts();
+    // this.products = this.productService.getProducts();
   }
   newSearch(str) {
     this.search = str;
   }
-  reset(){
+  reset() {
     this.search = '';
   }
 

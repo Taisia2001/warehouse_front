@@ -5,6 +5,6 @@ export interface Product {
   producer: string;
   amount: number;
   price: number;
-  category?: string;
-  categoryId?: number;
+  categoryName?: string;
+  category?: number;
 }

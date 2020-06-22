@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  product: Product = {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, category: 'food'};
+  product: Product = {id: 1, name: 'bread', description: 'd', price: 5, producer: 'me', amount: 2, categoryName: 'food'};
   temp;
   nName;
   nProducer;

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 
 @Injectable({providedIn: 'root'})
@@ -6,28 +7,15 @@ export class AuthService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   username = localStorage.getItem('data');
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  login(username: string, password: string) {
-    this.username = username;
-    localStorage.setItem('data', username);
-  /*  return this.http.post(appConfig.apiUrl + 'login', JSON.stringify({username, password}), {headers: this.headers})
-      .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        const user = response.json();
-
-        if (user && user.status) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('data', JSON.stringify(user.data));
-
-          // Initialize cart
-          localStorage.setItem('cart', JSON.stringify([]));
-
-        }
-
-        return user;
-      });*/
+  async login(username: string, pass: string) {
+    return this.http.put('http://localhost:8080/login', {login: username, password: pass}).subscribe((response: Response) => {
+      // @ts-ignore
+      localStorage.setItem('auth', JSON.stringify(response.authorization_token));
+      this.username = username;
+    });
   }
 
   logout() {
@@ -37,8 +25,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-// return this.authorized;
-    return ( localStorage.getItem('data') ) ? true : false;
+    return ( localStorage.getItem('auth') ) ? true : false;
 
   }
 
