@@ -25,7 +25,7 @@ search = '';
     ).subscribe(data => {
       console.log(data);
       for (const p of data) {
-        this.total += p.price;
+        this.total += (p.price * p.amount);
       }
       this.total = parseFloat(this.total.toFixed(2));
     });
@@ -33,7 +33,7 @@ search = '';
   ngOnInit() {
     this.updateProducts();
   }
-  updateProducts(){
+  updateProducts() {
     this.route.paramMap.subscribe(params => {
       this.category = this.categoryService.getCategory(params.get('id'));
       if (this.category) {
@@ -54,7 +54,7 @@ search = '';
     this.change = 0;
   }
   changeAmount() {
-    this.productService.editProduct(this.changedProduct,this.changedProduct.name, this.changedProduct.description,
+    this.productService.editProduct(this.changedProduct, this.changedProduct.name, this.changedProduct.description,
       this.changedProduct.producer, this.changedProduct.price, this.changedProduct.amount + this.change);
     this.changedProduct.amount += this.change;
     this.change = 0;
