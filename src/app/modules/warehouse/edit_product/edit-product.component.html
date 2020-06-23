@@ -13,7 +13,7 @@
   </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Description</p>
-    <textarea  class="edit-product-input"  type="text" placeholder="Description"  value="{{nDescription}}"  [(ngModel)]="nDescription" rows="5" #description="ngModel"  required></textarea>
+    <textarea  class="edit-product-input"  type="text" placeholder="Description"  value="{{nDescription}}"  [(ngModel)]="nDescription" rows="5" #description="ngModel"></textarea>
   </div>
   <div class="edit-product-line">
     <p class="edit-product-header">Price</p>
@@ -30,7 +30,7 @@
 
 
   <div>
-    <button [disabled]="!name.valid|| !description.valid || !price.valid || !producer.valid"
+    <button [disabled]="!name.valid || !price.valid || !producer.valid"
       class="btn btn-success edit-product-line"(click)="editProduct()">Edit Product</button>
   </div>
 

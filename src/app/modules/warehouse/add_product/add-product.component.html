@@ -13,7 +13,7 @@
   </div>
   <div class="add-product-line">
     <p class="add-product-header">Description</p>
-    <textarea class="add-product-input" type="text" placeholder="Description" [(ngModel)]="nDescription" rows="5" #description="ngModel" required></textarea>
+    <textarea class="add-product-input" type="text" placeholder="Description" [(ngModel)]="nDescription" rows="5" #description="ngModel"></textarea>
   </div>
   <div class="add-product-line">
     <p class="add-product-header">Price</p>
@@ -27,14 +27,14 @@
   <div class="add-product-line">
     <p class="add-product-header">Category
       <select [(ngModel)]="categoryId" name="categSelector" #categ="ngModel" (ngModelChange)="setId(categ.viewModel)" required>
-      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+      <option *ngFor="let category of (categories|async)" [value]="category.id" [textContent]="category.name"></option>
     </select></p>
 
   </div>
 
 
 <div>
-  <button [disabled]="!name.valid|| !description.valid || !amount.valid || !price.valid || !categ.valid || !producer.valid"
+  <button [disabled]="!name.valid || !amount.valid || !price.valid || !categ.valid || !producer.valid"
     class="btn btn-success add-product-line"(click)="addProduct()">Add Product</button>
 </div>
 

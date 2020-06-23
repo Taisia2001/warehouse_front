@@ -1,46 +1,72 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Category} from '../models/category';
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
-  private categories: Category[] = [
-    {id: 1, name: 'food', description: 'd'},
-    {id: 2, name: 'weapon', description: 'd'},
-    {id: 3, name: 'laptops', description: 'd'},
-    {id: 4, name: 'people', description: 'd'},
-    {id: 5, name: 'slave', description: 'd'},
-    {id: 6, name: 'wine', description: 'd'},
-    {id: 7, name: 'toy', description: 'd'},
-    {id: 8, name: 'phones', description: 'd'}
-
-  ];
+  private categories;
   constructor(private http: HttpClient) {}
-  /*fetchTodos(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://jsonplaceholder.typicode.com/todos?_limit=30')
-      .pipe(tap(todos => this.products = todos));
-  }*/
 
 
   removeCategory(id: number) {
-    this.categories = this.categories.filter(t => t.id !== id);
+    const auth = localStorage.getItem('auth');
+    const he = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('authorization_token', auth.substring(1, auth.length - 1));
+    this.http.delete('http://localhost:8080/api/category/' + id, {headers: he}).subscribe((response: Response) => {
+      //alert(response);
+      console.log(response);
+    });
   }
   getCategory(categoryId) {
-    return this.categories[categoryId - 1];
+    if(categoryId){
+      const auth = localStorage.getItem('auth');
+      const he = new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*')
+        .set('authorization_token', auth.substring(1, auth.length - 1));
+    return this.http.get('http://localhost:8080/api/show/category/' + categoryId, {headers: he});
+    }
+    return null;
   }
-  editCategory(todo: Category, name, description) {
-    alert('Mistake! You have already had category with name ' + todo.name);
+  editCategory(category: Category, nName, nDescription) {
+    //alert('Mistake! You have already had category with name ' + category.name);
     // alert("Category was edited and saved");
-    todo.name = name;
-    todo.description = description;
+    const auth = localStorage.getItem('auth');
+    const he = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('authorization_token', auth.substring(1, auth.length - 1));
+   this.http.post('http://localhost:8080/api/category',
+      {id: category.id, name: nName, description: nDescription},
+      {headers: he}).subscribe((response: Response) => {
+      const p = response;
+      console.log(p);
+    });
 
   }
-  addCategory(name, description) {
-    alert('Mistake! You have already had category with name ' + name);
+  addCategory(nName, nDescription) {
+    //alert('Mistake! You have already had category with name ' + name);
     // alert("Category was succesfully created");
-    this.categories.push({id: this.categories.length + 1, name, description});
+    const auth = localStorage.getItem('auth');
+    const he = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('authorization_token', auth.substring(1, auth.length - 1));
+    this.http.put('http://localhost:8080/api/category',
+      { name: nName, description: nDescription},
+      {headers: he}).subscribe((response: Response) => {
+      const p = response;
+      console.log(p);
+    });
  }
  getCaregories() {
-    return this.categories;
+   const auth = localStorage.getItem('auth');
+   const he = new HttpHeaders()
+     .set('content-type', 'application/json')
+     .set('Access-Control-Allow-Origin', '*')
+     .set('authorization_token', auth.substring(1, auth.length - 1));
+   return this.http.get('http://localhost:8080/api/show/categories', {headers: he});
  }
 }

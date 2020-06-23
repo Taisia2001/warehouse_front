@@ -10,15 +10,20 @@ import {CategoryService} from '../../../services/category.service';
 export class CategoryListComponent implements OnInit {
 categories;
 search = '';
-  constructor(public categoryService: CategoryService) {
-    this.categories = categoryService.getCaregories();
-  }
+  constructor(public categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCaregories().pipe(
+    ).subscribe(data => {
+      this.categories = data;
+    });
   }
   removeCategory(categoryId){
     this.categoryService.removeCategory(categoryId);
-    this.categories = this.categoryService.getCaregories();
+    this.categoryService.getCaregories().pipe(
+    ).subscribe(data => {
+      this.categories = data;
+    });
   }
   newSearch(str){
 this.search = str;

@@ -16,47 +16,52 @@ changedProduct: Product = {id: 1, name: 'bread', description: 'd', price: 5, pro
 change;
 category;
 title;
-products: Observable<any>;
+products;
 total = 0;
 search = '';
   constructor(public productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute ) { }
-
-  async ngOnInit() {
+  countTotal() {
+    this.products.pipe(
+    ).subscribe(data => {
+      console.log(data);
+      for (const p of data) {
+        this.total += p.price;
+      }
+      this.total = parseFloat(this.total.toFixed(2));
+    });
+  }
+  ngOnInit() {
+    this.updateProducts();
+  }
+  updateProducts(){
     this.route.paramMap.subscribe(params => {
       this.category = this.categoryService.getCategory(params.get('id'));
+      if (this.category) {
+        this.category.pipe().subscribe(res => {
+          this.title = res.name;
+          this.products = new Observable(observer => observer.next(res.products));
+          this.countTotal();
+        });
+      } else {
+        this.title = 'All products';
+        this.products = this.productService.getProducts();
+        this.countTotal();
+      }
     });
-    if (this.category) {
-      this.title = this.category.name;
-      // TODO change to id later
-      // this.products = this.productService.getProductsByCategory(this.category.name);
-    } else {
-      this.title = 'All products';
-      this.products = this.productService.getProducts();
-      console.log(this.products);
-    }
-    this.products.pipe(
-      map(items => items)
-    )
-      .subscribe(data => {
-        for (const p of data) {
-          this.total += p.price;
-        }
-        this.total = this.total.toFixed(2);
-      });
-
-
   }
   prodModal(item: Product) {
-    console.log(this.change);
     this.changedProduct = item;
     this.change = 0;
   }
   changeAmount() {
+    this.productService.editProduct(this.changedProduct,this.changedProduct.name, this.changedProduct.description,
+      this.changedProduct.producer, this.changedProduct.price, this.changedProduct.amount + this.change);
     this.changedProduct.amount += this.change;
+    this.change = 0;
    }
   removeProduct(productId) {
     this.productService.removeProduct(productId);
-    // this.products = this.productService.getProducts();
+    this.updateProducts();
   }
   newSearch(str) {
     this.search = str;

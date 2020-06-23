@@ -10,10 +10,10 @@
 
   <div class="add-category-line">
     <p class="add-category-header">Description</p>
-    <textarea class="add-category-input" type="text" placeholder="Description" [(ngModel)]="nDescription" rows="5"  #description="ngModel" required></textarea>
+    <textarea class="add-category-input" type="text" placeholder="Description" [(ngModel)]="nDescription" rows="5"  #description="ngModel"></textarea>
   </div>
 <div>
-    <button [disabled]="!name.valid|| !description.valid" class="btn btn-success add-category-line"(click)="addCategory()">Add Category</button>
+    <button [disabled]="!name.valid" class="btn btn-success add-category-line"(click)="addCategory()">Add Category</button>
   </div>
 
 

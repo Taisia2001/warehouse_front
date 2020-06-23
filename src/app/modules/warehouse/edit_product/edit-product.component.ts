@@ -20,20 +20,25 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.temp = this.productService.getProduct(params.get('id'));
-      if (this.temp) {
-      this.product = this.temp;
-      this.nName = this.product.name;
-      this.nDescription = this.product.description;
-      this.nProducer = this.product.producer;
-      this.nPrice = this.product.price;
-      } else {
-        this.router.navigate(['products']);
-      }
+       this.productService.getProduct(params.get('id')).pipe(
+      ).subscribe(data => {
+         this.temp = data;
+         if (this.temp) {
+           this.product = this.temp;
+           this.nName = this.product.name;
+           this.nDescription = this.product.description;
+           this.nProducer = this.product.producer;
+           this.nPrice = this.product.price;
+           this.nPrice = parseFloat(this.nPrice.toFixed(2));
+           console.log(this.product);
+         } else {
+           this.router.navigate(['products']);
+         }
+      });
     });
   }
   editProduct() {
-    this.productService.editProduct(this.product, this.nName, this.nDescription, this.nProducer, this.nPrice);
+    this.productService.editProduct(this.product, this.nName, this.nDescription, this.nProducer, this.nPrice, this.product.amount);
     // TODO show message product was edited or you have already had product with name ...
   }
 

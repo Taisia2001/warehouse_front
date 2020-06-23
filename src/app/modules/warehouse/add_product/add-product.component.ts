@@ -3,6 +3,7 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -17,20 +18,20 @@ export class AddProductComponent implements OnInit {
   nAmount;
   nPrice ;
   categoryId = '';
-  categoryName;
- public  categories: Category[] = this.categoryService.getCaregories();
+  categories;
   constructor(private  productServise: ProductService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categories = this.categoryService.getCaregories();
   }
 
   setId(id) {
     this.categoryId = id;
-    this.categoryName = this.categoryService.getCategory(id).name;
   }
   addProduct() {
     // TODO message add or not
-    this.productServise.addProduct(this.nName, this.nDescription, this.nProducer, this.nAmount, this.nPrice, this.categoryId, this.categoryName);
+    this.productServise.addProduct(this.nName, this.nDescription, this.nProducer,
+      this.nAmount, this.nPrice, this.categoryId);
     this.nName = '';
     this.nDescription = '';
     this.nProducer = '';

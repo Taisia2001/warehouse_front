@@ -9,7 +9,6 @@ import {Category} from '../../../models/category';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit {
-
   category: Category = {id: 1, name: 'food', description: 'd'};
   temp;
   nName;
@@ -18,14 +17,18 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.temp = this.categoryService.getCategory(params.get('id'));
-      if (this.temp) {
-        this.category = this.temp;
-        this.nName = this.category.name;
-        this.nDescription = this.category.description;
-      } else {
-        this.router.navigate(['categories']);
-      }
+      this.temp = this.categoryService.getCategory(params.get('id')).pipe(
+      ).subscribe(data => {
+        this.temp = data;
+        if (this.temp) {
+          this.category = this.temp;
+          this.nName = this.category.name;
+          this.nDescription = this.category.description;
+        } else {
+          this.router.navigate(['categories']);
+        }
+      });
+
     });
 
   }
