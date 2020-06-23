@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {CategoryService} from '../../../services/category.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {FilterPipe} from '../../shared/filter.pipe';
 
@@ -19,7 +19,8 @@ title;
 products;
 total = 0;
 search = '';
-  constructor(private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute, private filterPipe: FilterPipe) { }
+access;
+  constructor(private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute, private filterPipe: FilterPipe, private router: Router) { }
   countTotal() {
     this.total = 0;
     this.products.pipe(
@@ -32,16 +33,20 @@ search = '';
   }
   ngOnInit() {
     this.updateProducts();
+    const r = localStorage.getItem('role');
+    this.access = r === 'SuperAdmin' || r === 'Admin';
   }
   updateProducts() {
     this.route.paramMap.subscribe(params => {
       this.category = this.categoryService.getCategory(params.get('id'));
-      // TODO ловить 404
       if (this.category) {
         this.category.pipe().subscribe(res => {
-          this.title = res.name;
-          this.products = new Observable(observer => observer.next(res.products));
+          this.title = res.body.name;
+          this.products = new Observable(observer => observer.next(res.body.products));
           this.countTotal();
+        }, err => {
+          this.router.navigate(['products']);
+          alert(err.statusText);
         });
       } else {
         this.title = 'All products';

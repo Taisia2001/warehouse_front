@@ -22,24 +22,24 @@ export class EditProductComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
        this.productService.getProduct(params.get('id')).pipe(
       ).subscribe(data => {
-         this.temp = data;
-         if (this.temp) {
+        this.temp = data.body;
+        if (this.temp) {
            this.product = this.temp;
            this.nName = this.product.name;
            this.nDescription = this.product.description;
            this.nProducer = this.product.producer;
            this.nPrice = this.product.price;
            this.nPrice = parseFloat(this.nPrice.toFixed(2));
-         } else {
-           //TODO ловить 404
-           this.router.navigate(['products']);
          }
-      });
-    });
+      }, err => {
+         this.router.navigate(['products']);
+         alert(err.statusText);
+       });
+       });
+
   }
-  editProduct() {
+editProduct() {
     this.productService.editProduct(this.product, this.nName, this.nDescription, this.nProducer, this.nPrice, this.product.amount);
-    // TODO show message product was edited or you have already had product with name ...
   }
 
 }

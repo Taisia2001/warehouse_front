@@ -19,15 +19,15 @@ export class EditCategoryComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.temp = this.categoryService.getCategory(params.get('id')).pipe(
       ).subscribe(data => {
-        this.temp = data;
+        this.temp = data.body;
         if (this.temp) {
           this.category = this.temp;
           this.nName = this.category.name;
           this.nDescription = this.category.description;
-        } else {
-          //TODO ловить 404
-          this.router.navigate(['categories']);
         }
+      }, err => {
+        this.router.navigate(['categories']);
+        alert(err.statusText);
       });
 
     });

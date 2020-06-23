@@ -42,19 +42,7 @@
             <h5>{{ product.price | currency:'USD':true }}</h5>
           </div>
         </div>
-        <!--<div class="shop-item-cart">
-          <form role="form" >(submit)="addToCart($event, product, quantity.value)">
-            <div class="row">
-              <div class="col-md-4">
-                <input type="number" min="1" value="1" class="form-control" #quantity>
-              </div>
-              <div class="col-md-6">
-                <button type="submit" class="btn"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-              </div>
-            </div>
-          </form>
-        </div>-->
-        <div class="product-item-buttons">
+        <div *ngIf="access" class="product-item-buttons">
           <!--data-art="item._id"-->
           <button type="button" class="btn btn-secondary product-btn" data-toggle="modal" data-target="#productModal" (click)="prodModal(product)">Change Amount</button>
           <br>

@@ -32,6 +32,7 @@
 
 .login-submit-container button{
   padding: 10px 50px;
+  margin: 10px;
 }
 textarea:focus, input:focus{
   outline: none;

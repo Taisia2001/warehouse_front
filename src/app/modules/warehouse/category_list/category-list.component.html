@@ -24,10 +24,10 @@
             <p>{{ category.description }}</p>
           </div>
         </div>
-        <div class="category-item-buttons">
+        <div  class="category-item-buttons">
 
-          <button  [routerLink]="['/editCategory', category.id]" type="button" class="btn btn-success category-btn">Edit</button>
-          <button type="button" class="btn btn-danger category-btn delete-category-btn" (click)="removeCategory(category.id)">Delete</button>
+          <button *ngIf="access"   [routerLink]="['/editCategory', category.id]" type="button" class="btn btn-success category-btn">Edit</button>
+          <button *ngIf="access"  type="button" class="btn btn-danger category-btn delete-category-btn" (click)="removeCategory(category.id)">Delete</button>
           <br>
           <button type="button" class="btn btn-dark category-btn" [routerLink]="['/category', category.id]" >Products</button>
 

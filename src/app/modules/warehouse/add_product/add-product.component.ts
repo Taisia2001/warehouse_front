@@ -3,7 +3,7 @@ import {ProductService} from '../../../services/product.service';
 import {Product} from '../../../models/product';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -22,13 +22,15 @@ export class AddProductComponent implements OnInit {
   constructor(private  productServise: ProductService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categories = this.categoryService.getCaregories();
+     this.categoryService.getCaregories().subscribe(data => {
+      this.categories = new Observable(observer => observer.next(data.body));
+    });
   }
 
-  setId(id) {
+setId(id){
     this.categoryId = id;
   }
-  addProduct() {
+addProduct() {
     // TODO message add or not
     this.productServise.addProduct(this.nName, this.nDescription, this.nProducer,
       this.nAmount, this.nPrice, this.categoryId);

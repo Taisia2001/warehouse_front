@@ -33,25 +33,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-  async login(name, password) {
+  login(name, password) {
     this.authService.login(name, password);
-   /* if( appConfig.username == data.username && appConfig.password == data.password ){
-
-      this.authService.login(data.username,data.password)
-        .subscribe(
-          data => {
-            this.router.navigate(['/shop']);
-          });
-
-
-    }
-    else{
-
-      swal("Login failed", "Failed to logged in using provided username and password", "error");
-
-    }*/
-
-
+  }
+  signup(name, password) {
+    this.authService.signup(name, password);
   }
 
 }
