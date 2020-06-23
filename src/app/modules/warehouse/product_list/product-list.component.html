@@ -2,7 +2,7 @@
   <div class="search-product-form">
     <form>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Product" #se>
+        <input type="text" class="form-control" placeholder="Search Product" [value]="search" #se>
         <button type="button" class="btn btn-success product-btn search-product-btn" (click)="newSearch(se.value)">Search</button>
         <button type="button" class="btn btn-danger product-btn reset-search-product-btn" (click)="reset()">Reset</button>
       </div>

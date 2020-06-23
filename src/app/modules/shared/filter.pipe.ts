@@ -1,7 +1,7 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 import {Product} from '../../models/product';
 import {Category} from '../../models/category';
-
+@Injectable({providedIn: 'root'})
 @Pipe({
   name: 'filter'
 })

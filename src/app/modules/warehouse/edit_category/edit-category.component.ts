@@ -25,6 +25,7 @@ export class EditCategoryComponent implements OnInit {
           this.nName = this.category.name;
           this.nDescription = this.category.description;
         } else {
+          //TODO ловить 404
           this.router.navigate(['categories']);
         }
       });

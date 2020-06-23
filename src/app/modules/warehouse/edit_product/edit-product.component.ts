@@ -30,8 +30,8 @@ export class EditProductComponent implements OnInit {
            this.nProducer = this.product.producer;
            this.nPrice = this.product.price;
            this.nPrice = parseFloat(this.nPrice.toFixed(2));
-           console.log(this.product);
          } else {
+           //TODO ловить 404
            this.router.navigate(['products']);
          }
       });

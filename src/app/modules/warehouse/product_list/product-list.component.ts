@@ -4,7 +4,7 @@ import {Product} from '../../../models/product';
 import {CategoryService} from '../../../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {FilterPipe} from '../../shared/filter.pipe';
 
 @Component({
   selector: 'app-product-list',
@@ -19,11 +19,11 @@ title;
 products;
 total = 0;
 search = '';
-  constructor(public productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute ) { }
+  constructor(private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute, private filterPipe: FilterPipe) { }
   countTotal() {
+    this.total = 0;
     this.products.pipe(
     ).subscribe(data => {
-      console.log(data);
       for (const p of data) {
         this.total += (p.price * p.amount);
       }
@@ -36,6 +36,7 @@ search = '';
   updateProducts() {
     this.route.paramMap.subscribe(params => {
       this.category = this.categoryService.getCategory(params.get('id'));
+      // TODO ловить 404
       if (this.category) {
         this.category.pipe().subscribe(res => {
           this.title = res.name;
@@ -44,8 +45,10 @@ search = '';
         });
       } else {
         this.title = 'All products';
-        this.products = this.productService.getProducts();
-        this.countTotal();
+        this.productService.getProducts().subscribe(res => {
+          this.products = new Observable(observer => observer.next(res.body));
+          this.countTotal();
+        });
       }
     });
   }
@@ -65,9 +68,19 @@ search = '';
   }
   newSearch(str) {
     this.search = str;
+    this.products.pipe(
+   ).subscribe(data => {
+     this.total = 0;
+     for (const p of this.filterPipe.transform(data, this.search)) {
+        this.total += (p.price * p.amount);
+      }
+     this.total = parseFloat(this.total.toFixed(2));
+   });
+
   }
   reset() {
     this.search = '';
+    this.countTotal();
   }
 
 }
