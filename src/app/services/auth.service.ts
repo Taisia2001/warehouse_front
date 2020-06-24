@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Md5} from 'ts-md5/dist/md5'
 
 
 @Injectable({providedIn: 'root'})
@@ -14,7 +15,7 @@ export class AuthService {
     he.append('content-type', 'application/json');
     he.append('Access-Control-Allow-Origin', '*');
     return this.http.put('http://localhost:8080/signup',
-      {login: username, password: pass},
+      {login: username, password: Md5.hashStr(pass)},
       {headers: he, observe: 'response'})
       .subscribe((response) => {
 
@@ -36,7 +37,7 @@ export class AuthService {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
     return this.http.put('http://localhost:8080/login',
-      {login: username, password: pass},
+      {login: username, password: Md5.hashStr(pass)},
       {headers: he, observe: 'response'})
       .subscribe((response) => {
       // @ts-ignore
