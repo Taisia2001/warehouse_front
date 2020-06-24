@@ -15,6 +15,9 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {FilterPipe} from '../shared/filter.pipe';
 import {AuthGuard} from '../../guards/auth.guard';
+import {ChangeGuard} from '../../guards/change.guard';
+import {UserListComponent} from './user-list/user-list.component';
+import {AdminGuard} from '../../guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -51,15 +54,23 @@ export const routes: Routes = [
   {
     path: 'addCategory',
     component: WarehouseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ChangeGuard],
     children: [
       { path: '', component: AddCategoryComponent}
     ]
   },
   {
+    path: 'users',
+    component: WarehouseComponent,
+    canActivate: [AuthGuard, AdminGuard],
+    children: [
+      { path: '', component: UserListComponent}
+    ]
+  },
+  {
     path: 'addProduct',
     component: WarehouseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ChangeGuard],
     children: [
       {path: '', component: AddProductComponent, }
     ]
@@ -67,7 +78,7 @@ export const routes: Routes = [
   {
     path: 'editCategory/:id',
     component: WarehouseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ChangeGuard],
     children: [
       { path: '', component: EditCategoryComponent}
     ]
@@ -75,7 +86,7 @@ export const routes: Routes = [
   {
     path: 'editProduct/:id',
     component: WarehouseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ChangeGuard],
     children: [
       {path: '', component: EditProductComponent, }
     ]
@@ -99,7 +110,8 @@ export const routes: Routes = [
     EditProductComponent,
     EditCategoryComponent,
     AddCategoryComponent,
-    FilterPipe
+    FilterPipe,
+    UserListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

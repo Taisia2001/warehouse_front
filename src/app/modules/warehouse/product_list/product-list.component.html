@@ -43,7 +43,6 @@
           </div>
         </div>
         <div *ngIf="access" class="product-item-buttons">
-          <!--data-art="item._id"-->
           <button type="button" class="btn btn-secondary product-btn" data-toggle="modal" data-target="#productModal" (click)="prodModal(product)">Change Amount</button>
           <br>
           <button type="button" class="btn btn-success product-btn" [routerLink]="['/editProduct', product.id]" >Edit</button>

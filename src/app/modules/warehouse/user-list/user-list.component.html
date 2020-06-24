@@ -1,0 +1,12 @@
+<section class="user-list-container">
+  <ng-container *ngFor="let user of (users |async)" >
+    <div class="user-content">
+      <div class="user-name text-center col-md">{{user.login}}</div>
+      <div class="text-center">
+      <button [disabled]="user.role === 'SuperAdmin'" type="button" class="btn btn-danger user-btn col-md-2 center" (click)="removeUser(user.id)">Delete</button>
+      <button  [disabled]="user.role === 'SuperAdmin'" type="button" class="btn btn-secondary user-btn col-md-2 center" (click)="setRole(user)" [textContent]="getText(user.role)"></button>
+      </div>
+    </div>
+
+  </ng-container>
+</section>

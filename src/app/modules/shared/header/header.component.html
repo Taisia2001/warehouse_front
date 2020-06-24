@@ -9,6 +9,7 @@
         <li><a [hidden]="!authService.isAuthenticated()" routerLink="/categories">CATEGORIES</a></li>
         <li><a [hidden]="!authService.isAuthenticated()||!authService.itCanAdd()" routerLink="/addProduct">ADD PRODUCT</a></li>
         <li><a [hidden]="!authService.isAuthenticated()||!authService.itCanAdd()" routerLink="/addCategory">ADD CATEGORY</a></li>
+        <li><a [hidden]="!authService.itSuperAdmin()||!authService.isAuthenticated()" routerLink="/users">USERS</a></li>
         <li><span [hidden]="!authService.isAuthenticated()" [textContent]="authService.username"></span></li>
         <li><a routerLink="/login" (click)="logout()" [hidden]="!authService.isAuthenticated()">LOGOUT</a></li>
       </ul>

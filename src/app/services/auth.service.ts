@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 @Injectable({providedIn: 'root'})
 export class AuthService {
   username;
-  role;
   constructor(private http: HttpClient, private router: Router) {
     this.username = localStorage.getItem('username');
   }
@@ -65,7 +64,11 @@ export class AuthService {
     return ( localStorage.getItem('auth') ) ? true : false;
   }
   itCanAdd() {
-    return this.role === 'SuperAdmin' || this.role === 'Admin';
+    const role = localStorage.getItem('role');
+    return role === 'SuperAdmin' || role === 'Admin';
+  }
+  itSuperAdmin() {
+    return localStorage.getItem('role') === 'SuperAdmin';
   }
 
 }

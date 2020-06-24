@@ -1,0 +1,18 @@
+.user-content{
+margin: 20px;
+  horiz-align: left;
+}
+.user-btn{
+  margin: 10px;
+  vertical-align: center;
+  horiz-align: center;
+}
+.user-name{
+  color: #4646ad;
+  font-weight: 600;
+  font-style: italic;
+  font-size: xx-large;
+}
+.user-list-container{
+  margin: 5px 10%;
+}
