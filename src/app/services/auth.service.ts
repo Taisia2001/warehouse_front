@@ -39,7 +39,6 @@ export class AuthService {
       {login: username, password: pass},
       {headers: he, observe: 'response'})
       .subscribe((response) => {
-        console.log(response);
       // @ts-ignore
         localStorage.setItem('auth', response.body.authorization_token);
         localStorage.setItem('username', username);

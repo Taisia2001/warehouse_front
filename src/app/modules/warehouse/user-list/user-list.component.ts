@@ -10,7 +10,6 @@ import {Observable} from 'rxjs';
 export class UserListComponent implements OnInit {
   constructor(private userService: UserService) { }
 users;
-error;
   ngOnInit(): void {
     this.updateUsers();
   }
