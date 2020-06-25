@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({
@@ -10,27 +9,10 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  // loginForm: FormGroup;
-
-  constructor(public authService: AuthService,
-              public router: Router
-   /* private route: ActivatedRoute,
-    private location: Location,
-    private fb: FormBuilder,
-    public authService: AuthService*/
-  ) {}
+  constructor(public authService: AuthService, public router: Router) {}
 
 
   ngOnInit(): void {
-
-    // reset login status
-   /* this.authService.logout();
-
-    this.loginForm = this.fb.group({
-      'username': new FormControl(null, []),
-      'password': new FormControl(null, []),
-    });*/
-
   }
 
   login(name, password) {
