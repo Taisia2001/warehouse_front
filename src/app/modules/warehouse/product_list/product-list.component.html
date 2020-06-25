@@ -94,28 +94,28 @@
           <div class="product-modal-amount-title">Min Price     </div>
           <input  class="form-input" type="number" name="minPrice" #minPr="ngModel"  min="0" placeholder="Min Price" pattern="\d*" [(ngModel)]="minPriceT" >
           <div [hidden]="minPr.valid" class="alert alert-danger">
-            Here can be only integer value!
+            Here can be only integer value more than zero!
           </div>
           <div>
             <div>
               <div class="product-modal-amount-title">Max Price     </div>
               <input  class="form-input" type="number" name="maxPrice" #maxPr="ngModel"  min="0" placeholder="Max Price" pattern="\d*" [(ngModel)]="maxPriceT" >
               <div [hidden]="maxPr.valid" class="alert alert-danger">
-                Here can be only integer value!
+                Here can be only integer value more than zero!
               </div>
               <div>
                 <div>
                   <div class="product-modal-amount-title">Min Amount   </div>
                   <input  class="form-input" type="number" name="minAmount" #minAm="ngModel"  min="0" placeholder="Min Amount" pattern="\d*" [(ngModel)]="minAmountT" >
                   <div [hidden]="minAm.valid" class="alert alert-danger">
-                    Here can be only integer value!
+                    Here can be only integer value more than zero!
                   </div>
                   <div>
                     <div>
                       <div class="product-modal-amount-title">Max Amount   </div>
                       <input  class="form-input" type="number" name="maxAmount" #maxAm="ngModel"  min="0" placeholder="Max Amount" pattern="\d*" [(ngModel)]="maxAmountT" >
                       <div [hidden]="maxAm.valid" class="alert alert-danger">
-                        Here can be only integer value!
+                        Here can be only integer value more than zero!
                       </div>
                       <div>
             <button data-dismiss="modal" [disabled]="(!minPr.valid) ||(!maxPr.valid) ||(!minAm.valid) ||(!maxAm.valid) " type="button" class="btn btn-dark product-btn" (click)="saveParams(se.value)" >Save Parameters And Search</button>
