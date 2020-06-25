@@ -19,6 +19,14 @@ title;
 products;
 total = 0;
 search = '';
+  minPriceT;
+  maxPriceT;
+  minAmountT;
+  maxAmountT;
+  minPrice = -1;
+  maxPrice = -1;
+  minAmount = -1;
+  maxAmount = -1;
 access;
   constructor(private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute, private filterPipe: FilterPipe, private router: Router) { }
   countTotal() {
@@ -76,7 +84,7 @@ access;
     this.products.pipe(
    ).subscribe(data => {
      this.total = 0;
-     for (const p of this.filterPipe.transform(data, this.search)) {
+     for (const p of this.filterPipe.transform(data, this.search, this.minPrice, this.maxPrice, this.minAmount, this.maxAmount)) {
         this.total += (p.price * p.amount);
       }
      this.total = parseFloat(this.total.toFixed(2));
@@ -85,7 +93,26 @@ access;
   }
   reset() {
     this.search = '';
+    this.minPrice = -1;
+    this.maxPrice = -1;
+    this.minAmount = -1;
+    this.maxAmount = -1;
+    this.minPriceT = '';
+    this.maxPriceT = '';
+    this.minAmountT = '';
+    this.maxAmountT = '';
     this.countTotal();
   }
 
+  saveParams(str) {
+    if(this.minAmountT)
+      this.minAmount=this.minAmountT;
+    if(this.minPriceT)
+      this.minPrice=this.minPriceT;
+    if(this.maxAmountT)
+      this.maxAmount=this.maxAmountT;
+    if(this.maxPriceT)
+      this.maxPrice=this.maxPriceT;
+    this.newSearch(str);
+  }
 }
