@@ -105,13 +105,13 @@ access;
   }
 
   saveParams(str) {
-    if(this.minAmountT)
+    if(this.minAmountT||this.minAmountT>-1)
       this.minAmount=this.minAmountT;
-    if(this.minPriceT)
+    if(this.minPriceT||this.minPriceT>-1)
       this.minPrice=this.minPriceT;
-    if(this.maxAmountT)
+    if(this.maxAmountT||this.maxAmountT>-1)
       this.maxAmount=this.maxAmountT;
-    if(this.maxPriceT)
+    if(this.maxPriceT||this.maxPriceT>-1)
       this.maxPrice=this.maxPriceT;
     this.newSearch(str);
   }
